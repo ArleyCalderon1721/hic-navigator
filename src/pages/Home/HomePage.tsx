@@ -13,7 +13,6 @@ export function HomePage() {
     setOriginId,
     setDestinationId,
     searchRoute,
-    reset,
   } = useRouteVideo();
 
   const [showVideo, setShowVideo] = useState(false);
@@ -26,7 +25,6 @@ export function HomePage() {
 
   function handleClose() {
     setShowVideo(false);
-    reset();
   }
 
   return (
