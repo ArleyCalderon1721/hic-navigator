@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ruta_001",
+    "originId": "entrada_principal",
+    "destinationId": "urgencias",
+    "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    "duration": "2 min"
+  },
+  {
+    "id": "ruta_002",
+    "originId": "entrada_principal",
+    "destinationId": "farmacia",
+    "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    "duration": "3 min"
+  },
+  {
+    "id": "ruta_003",
+    "originId": "entrada_principal",
+    "destinationId": "consulta_externa",
+    "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    "duration": "2 min"
+  }
+]

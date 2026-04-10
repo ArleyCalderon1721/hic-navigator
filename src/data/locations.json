@@ -1,0 +1,10 @@
+[
+  { "id": "entrada_principal", "name": "Entrada principal", "floor": 1 },
+  { "id": "urgencias", "name": "Urgencias", "floor": 1 },
+  { "id": "farmacia", "name": "Farmacia", "floor": 1 },
+  { "id": "consulta_externa", "name": "Consulta externa", "floor": 1 },
+  { "id": "cafeteria", "name": "Cafetería", "floor": 1 },
+  { "id": "laboratorio", "name": "Laboratorio clínico", "floor": 2 },
+  { "id": "radiologia", "name": "Radiología", "floor": 2 },
+  { "id": "hospitalizacion", "name": "Hospitalización", "floor": 3 }
+]

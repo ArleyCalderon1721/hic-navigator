@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hic-navigator
+    runtime: node
+    buildCommand: npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromSecret: database_url
