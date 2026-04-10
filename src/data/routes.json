@@ -10,7 +10,7 @@
     "id": "ruta_002",
     "originId": "entrada_principal",
     "destinationId": "farmacia",
-    "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    "videoUrl": "https://res.cloudinary.com/djhcxfjbc/video/upload/v1775827725/p1-lobby__s1-farmacia.mp4_krsnzj.mp4",
     "duration": "3 min"
   },
   {
@@ -19,5 +19,12 @@
     "destinationId": "consulta_externa",
     "videoUrl": "https://www.youtube.com/embed/VIDEO_ID_AQUI",
     "duration": "2 min"
+  },
+  {
+    "id": "ruta_004",
+    "originId": "banco_de_sangre",
+    "destinationId": "farmacia_oncologica",
+    "videoUrl": "https://res.cloudinary.com/djhcxfjbc/video/upload/v1775827723/s1-banco-de-sangre__s1-farmacia-oncologica_ac0zcy.mp4",
+    "duration": "3 min"
   }
 ]

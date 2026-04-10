@@ -29,7 +29,9 @@ export function VideoPlayer({ result, onClose }: Props) {
   }
 
   const videoSrc = result.video?.videoUrl
-    ? result.video.videoUrl.startsWith('/')
+    ? result.video.videoUrl.startsWith('/') ||
+      result.video.videoUrl.startsWith('http://') ||
+      result.video.videoUrl.startsWith('https://')
       ? result.video.videoUrl
       : `/${result.video.videoUrl}`
     : undefined;
@@ -63,9 +65,7 @@ export function VideoPlayer({ result, onClose }: Props) {
               className="video-player"
               onError={(e) => {
                 console.error('Video load error', e);
-                alert(
-                  'No se puede cargar el video. Verifica que exista el archivo en public/videos/routes/'
-                );
+                alert('No se puede cargar el video. Revisa la URL o la conexión.');
               }}
             >
               Tu navegador no soporta el elemento de video.

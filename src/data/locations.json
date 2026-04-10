@@ -6,5 +6,7 @@
   { "id": "cafeteria", "name": "Cafetería", "floor": 1 },
   { "id": "laboratorio", "name": "Laboratorio clínico", "floor": 2 },
   { "id": "radiologia", "name": "Radiología", "floor": 2 },
-  { "id": "hospitalizacion", "name": "Hospitalización", "floor": 3 }
+  { "id": "hospitalizacion", "name": "Hospitalización", "floor": 3 },
+  { "id": "banco_de_sangre", "name": "Banco de sangre", "floor": 1 },
+  { "id": "farmacia_oncologica", "name": "Farmacia oncológica", "floor": 1 }
 ]
