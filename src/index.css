@@ -286,3 +286,313 @@ body {
   position: relative;
   z-index: 2;
 }
+
+/* BOTÓN SECUNDARIO */
+.home-btn-secondary {
+  margin-top: 8px;
+  padding: 14px;
+  background: #00aa66;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.home-btn-secondary:hover {
+  background: #00ff99;
+  transform: translateY(-1px);
+}
+
+.home-btn-secondary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* MODAL ESCANER QR */
+.qr-scanner-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.qr-scanner-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 51, 102, 0.3), 0 0 40px rgba(0, 102, 204, 0.1);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(0, 102, 204, 0.1);
+  animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.qr-scanner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px;
+  background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 51, 102, 0.2);
+}
+
+.qr-scanner-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.qr-scanner-close {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.qr-scanner-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+.qr-reader-container {
+  padding: 30px 24px;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fb 0%, #eef2f7 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-reader-container::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 3px dashed rgba(0, 102, 204, 0.2);
+  border-radius: 12px;
+  pointer-events: none;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 102, 204, 0);
+  }
+}
+
+.qr-reader-container > div {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.qr-reader-container video {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.15) !important;
+}
+
+.qr-scanner-error {
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #ffe6e6 0%, #fff0f0 100%);
+  border-left: 5px solid #ff4444;
+  color: #cc0000;
+  font-size: 14px;
+  border-radius: 8px;
+  margin: 16px 24px 0 24px;
+  animation: slideInDown 0.4s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.qr-scanner-error p {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.qr-scanner-error small {
+  display: block;
+  opacity: 0.85;
+  font-size: 12px;
+}
+
+.qr-scanner-instruction {
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #e0f0ff 0%, #e8f4ff 100%);
+  color: #0055aa;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 102, 204, 0.2);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.qr-scanner-instruction p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.qr-scanner-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid rgba(0, 102, 204, 0.1);
+  justify-content: flex-end;
+}
+
+.qr-btn-primary,
+.qr-btn-secondary {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.qr-btn-primary {
+  background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+  min-width: 100px;
+}
+
+.qr-btn-primary:hover {
+  background: linear-gradient(135deg, #0055aa 0%, #0066cc 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.3);
+}
+
+.qr-btn-primary:active {
+  transform: translateY(0);
+}
+
+.qr-btn-secondary {
+  background: white;
+  color: #003366;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.qr-btn-secondary:hover {
+  background: #f5f5f5;
+  border-color: #0066cc;
+  color: #0055aa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+}
+
+.qr-btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Estilos para html5-qrcode */
+#qr-reader__scan_region {
+  border: 3px solid #0066cc !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.3) !important;
+}
+
+#qr-reader__header_message {
+  font-size: 13px !important;
+  color: #0055aa !important;
+  font-weight: 600 !important;
+}
+
+#qr-reader canvas {
+  border-radius: 8px !important;
+}
+
+/* Media queries para responsive */
+@media (max-width: 480px) {
+  .qr-scanner-modal {
+    max-width: 90vw;
+    border-radius: 16px;
+  }
+
+  .qr-scanner-header {
+    padding: 20px 16px;
+  }
+
+  .qr-scanner-header h2 {
+    font-size: 18px;
+  }
+
+  .qr-reader-container {
+    padding: 24px 16px;
+    min-height: 320px;
+  }
+
+  .qr-scanner-footer {
+    flex-direction: column-reverse;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .qr-btn-primary,
+  .qr-btn-secondary {
+    width: 100%;
+    padding: 14px;
+  }
+}

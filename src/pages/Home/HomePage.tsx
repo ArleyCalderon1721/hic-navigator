@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LocationSelector } from '../../components/LocationSelector';
 import { VideoPlayer } from '../../components/VideoPlayer';
+import { QRScanner } from '../../components/QRScanner';
 import { useRouteVideo } from '../../hooks/useRouteVideo';
 
 export function HomePage() {
@@ -16,6 +17,7 @@ export function HomePage() {
   } = useRouteVideo();
 
   const [showVideo, setShowVideo] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
 
   function handleSearch() {
     if (!originId || !destinationId) return;
@@ -25,6 +27,25 @@ export function HomePage() {
 
   function handleClose() {
     setShowVideo(false);
+  }
+
+  function handleQRScan(decodedText: string) {
+    try {
+      // El QR contiene una URL, extraer el parámetro origin
+      const url = new URL(decodedText);
+      const origin = url.searchParams.get('origin');
+      
+      if (origin) {
+        setOriginId(origin);
+        setShowScanner(false);
+      } else {
+        alert('QR inválido: no contiene un parámetro "origin"');
+      }
+    } catch (error) {
+      // Si no es una URL válida, asumir que es directamente un ID de ubicación
+      setOriginId(decodedText);
+      setShowScanner(false);
+    }
   }
 
   return (
@@ -99,10 +120,25 @@ export function HomePage() {
               >
                 Ver ruta
               </button>
+
+              <button
+                className="home-btn-secondary"
+                onClick={() => setShowScanner(true)}
+                style={{ marginTop: '8px' }}
+              >
+                📱 Escanear nuevo QR
+              </button>
             </>
           )}
         </div>
       </div>
+
+      {showScanner && (
+        <QRScanner
+          onScan={handleQRScan}
+          onClose={() => setShowScanner(false)}
+        />
+      )}
 
       {showVideo && result && (
         <VideoPlayer result={result} onClose={handleClose} />
