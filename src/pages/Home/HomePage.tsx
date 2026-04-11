@@ -31,20 +31,40 @@ export function HomePage() {
 
   function handleQRScan(decodedText: string) {
     try {
-      // El QR contiene una URL, extraer el parámetro origin
+      // El QR contiene una URL, extraer los parámetros
       const url = new URL(decodedText);
-      const origin = url.searchParams.get('origin');
+      
+      // Buscar en múltiples parámetros posibles (en orden de prioridad)
+      const origin = 
+        url.searchParams.get('origin') || 
+        url.searchParams.get('location') || 
+        url.searchParams.get('id') || 
+        url.searchParams.get('punto') ||
+        url.searchParams.get('ubicacion');
       
       if (origin) {
         setOriginId(origin);
         setShowScanner(false);
       } else {
-        alert('QR inválido: no contiene un parámetro "origin"');
+        // Si la URL no tiene parámetros reconocidos, mostrar todos disponibles
+        const allParams = Array.from(url.searchParams.entries());
+        if (allParams.length > 0) {
+          // Si hay parámetros, usar el primero
+          const [_key, value] = allParams[0];
+          setOriginId(value);
+          setShowScanner(false);
+        } else {
+          alert('QR inválido: no contiene información de ubicación reconocida');
+        }
       }
     } catch (error) {
       // Si no es una URL válida, asumir que es directamente un ID de ubicación
-      setOriginId(decodedText);
-      setShowScanner(false);
+      if (decodedText.trim()) {
+        setOriginId(decodedText.trim());
+        setShowScanner(false);
+      } else {
+        alert('QR inválido o vacío');
+      }
     }
   }
 
