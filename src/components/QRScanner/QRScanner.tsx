@@ -12,49 +12,53 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-  let cancelled = false;
+    let cancelled = false;
 
-  const container = document.getElementById('qr-reader');
-  if (container) container.innerHTML = '';
+    const container = document.getElementById('qr-reader');
+    if (container) container.innerHTML = '';
 
-  const scanner = new Html5Qrcode('qr-reader');
-  scannerRef.current = scanner;
+    const scanner = new Html5Qrcode('qr-reader');
+    scannerRef.current = scanner;
 
-  const startScanner = (facingMode: string) =>
-    scanner.start(
-      { facingMode },
-      { fps: 10, qrbox: { width: 250, height: 250 } },
-      (decodedText) => {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const primaryCamera = isMobile ? 'environment' : 'user';
+    const fallbackCamera = isMobile ? 'user' : 'environment';
+
+    const startScanner = (facingMode: string) =>
+      scanner.start(
+        { facingMode },
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        (decodedText) => {
+          if (cancelled) return;
+          onScan(decodedText);
+          if (isRunningRef.current) {
+            scanner.stop().catch(() => {});
+            isRunningRef.current = false;
+          }
+        },
+        undefined
+      );
+
+    startScanner(primaryCamera)
+      .then(() => { if (!cancelled) isRunningRef.current = true; })
+      .catch(() => {
         if (cancelled) return;
-        onScan(decodedText);
-        if (isRunningRef.current) {
-          scanner.stop().catch(() => {});
-          isRunningRef.current = false;
-        }
-      },
-      undefined
-    );
+        startScanner(fallbackCamera)
+          .then(() => { if (!cancelled) isRunningRef.current = true; })
+          .catch((err) => {
+            if (!cancelled) setError('No se pudo acceder a la cámara. Verifica los permisos.');
+            console.error(err);
+          });
+      });
 
-  startScanner('environment')
-    .then(() => { if (!cancelled) isRunningRef.current = true; })
-    .catch(() => {
-      if (cancelled) return;
-      startScanner('user')
-        .then(() => { if (!cancelled) isRunningRef.current = true; })
-        .catch((err) => {
-          if (!cancelled) setError('No se pudo acceder a la cámara. Verifica los permisos.');
-          console.error(err);
-        });
-    });
-
-  return () => {
-    cancelled = true;
-    if (scannerRef.current && isRunningRef.current) {
-      scannerRef.current.stop().catch(() => {});
-      isRunningRef.current = false;
-    }
-  };
-}, [onScan]);
+    return () => {
+      cancelled = true;
+      if (scannerRef.current && isRunningRef.current) {
+        scannerRef.current.stop().catch(() => {});
+        isRunningRef.current = false;
+      }
+    };
+  }, [onScan]);
 
   return (
     <div className="qr-scanner-overlay">
