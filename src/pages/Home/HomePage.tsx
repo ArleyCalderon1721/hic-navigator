@@ -146,7 +146,7 @@ export function HomePage() {
                 onClick={() => setShowScanner(true)}
                 style={{ marginTop: '8px' }}
               >
-                📱 Escanear nuevo QR
+                Escanear nuevo QR
               </button>
             </>
           )}

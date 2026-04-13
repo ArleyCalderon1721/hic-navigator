@@ -75,7 +75,7 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
           </div>
         ) : (
           <div className="qr-scanner-instruction">
-            <p>📸 Apunta la cámara hacia el código QR</p>
+            <p>Apunta la cámara hacia el código QR</p>
           </div>
         )}
 

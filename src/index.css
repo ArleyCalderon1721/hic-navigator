@@ -291,7 +291,7 @@ body {
 .home-btn-secondary {
   margin-top: 8px;
   padding: 14px;
-  background: #00aa66;
+  background: #8F183A;
   color: white;
   border: none;
   border-radius: 10px;
@@ -302,7 +302,7 @@ body {
 }
 
 .home-btn-secondary:hover {
-  background: #00ff99;
+  background: #E60045;
   transform: translateY(-1px);
 }
 
