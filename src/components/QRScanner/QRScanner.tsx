@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 
 interface QRScannerProps {
   onScan: (decodedText: string) => void;
@@ -12,33 +12,16 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
   const [isScanning, setIsScanning] = useState(true);
 
   useEffect(() => {
-    let selectedDeviceId: string | undefined;
-
-    // Obtener las cámaras disponibles y seleccionar la trasera
+    // Inicializar el scanner
     const initializeScanner = async () => {
       try {
-        const cameras = await Html5Qrcode.getCameras();
-        
-        if (cameras && cameras.length > 0) {
-          // Intentar seleccionar la cámara trasera (back camera)
-          const backCamera = cameras.find(camera => 
-            camera.label.toLowerCase().includes('back') || 
-            camera.label.toLowerCase().includes('trasera') ||
-            camera.label.toLowerCase().includes('rear')
-          );
-          
-          // Si no hay cámara trasera, seleccionar la primera disponible
-          selectedDeviceId = backCamera ? backCamera.deviceId : cameras[0].deviceId;
-        }
-
         const scanner = new Html5QrcodeScanner(
           'qr-reader',
           {
             fps: 10,
-            qrbox: { width: 250, height: 250 },
-            aspectRatio: 0.9,
+            qrbox: { width: 350, height: 350 },
+            aspectRatio: 1.0,
             disableFlip: true,
-            deviceId: selectedDeviceId,
             showTorchButtonIfSupported: true,
           },
           false

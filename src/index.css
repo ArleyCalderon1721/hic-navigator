@@ -389,7 +389,8 @@ body {
 
 .qr-reader-container {
   padding: 30px 24px;
-  min-height: 380px;
+  min-height: 450px;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -564,7 +565,7 @@ body {
   border-radius: 8px !important;
 }
 
-/* Ocultar botón de archivo y botón de inicio */
+/* Ocultar todos los controles y letreros innecesarios */
 #qr-reader__file_label {
   display: none !important;
 }
@@ -593,6 +594,32 @@ body {
   display: none !important;
 }
 
+#qr-reader__top_section {
+  display: none !important;
+}
+
+#qr-reader select {
+  display: none !important;
+}
+
+#qr-reader__toolbar {
+  display: none !important;
+}
+
+/* Ocultar todos los textos y letreros generados por html5-qrcode */
+#qr-reader div:has(> select),
+#qr-reader div:has(> button) {
+  display: none !important;
+}
+
+/* Asegurar que solo se muestre el área de escaneo */
+#qr-reader {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+}
+
 /* Media queries para responsive */
 @media (max-width: 480px) {
   .qr-scanner-modal {
@@ -610,7 +637,8 @@ body {
 
   .qr-reader-container {
     padding: 24px 16px;
-    min-height: 320px;
+    min-height: 380px;
+    height: 380px;
   }
 
   .qr-scanner-footer {
