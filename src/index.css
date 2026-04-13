@@ -564,6 +564,35 @@ body {
   border-radius: 8px !important;
 }
 
+/* Ocultar botón de archivo y botón de inicio */
+#qr-reader__file_label {
+  display: none !important;
+}
+
+#qr-reader__file_label_wrapper {
+  display: none !important;
+}
+
+#qr-reader__start_button {
+  display: none !important;
+}
+
+.qrscanner-button {
+  display: none !important;
+}
+
+#qr-reader button {
+  display: none !important;
+}
+
+#qr-reader__footer {
+  display: none !important;
+}
+
+#qr-reader__header {
+  display: none !important;
+}
+
 /* Media queries para responsive */
 @media (max-width: 480px) {
   .qr-scanner-modal {
