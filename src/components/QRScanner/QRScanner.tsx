@@ -45,6 +45,28 @@ export function QRScanner({ onScan, onClose }: QRScannerProps) {
 
         scanner.render(onScanSuccess, onScanFailure);
         setError(null);
+
+        // Remover elementos generados por html5-qrcode que no queremos mostrar
+        setTimeout(() => {
+          // Remover todos los botones (Stop Scanning, etc)
+          document.querySelectorAll('#qr-reader button').forEach(btn => btn.remove());
+          
+          // Remover header con selector de cámara
+          const header = document.querySelector('#qr-reader__header');
+          if (header) header.remove();
+          
+          // Remover footer
+          const footer = document.querySelector('#qr-reader__footer');
+          if (footer) footer.remove();
+          
+          // Remover select de cámara y su contenedor
+          const select = document.querySelector('#qr-reader select');
+          if (select) select.parentElement?.remove();
+          
+          // Remover toolbar
+          const toolbar = document.querySelector('#qr-reader__toolbar');
+          if (toolbar) toolbar.remove();
+        }, 100);
       } catch (err: unknown) {
         const errorMessage = err instanceof Error ? err.message : String(err);
         setError(`Error al inicializar la cámara: ${errorMessage}`);
