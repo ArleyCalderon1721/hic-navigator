@@ -620,6 +620,25 @@ body {
   flex-direction: column !important;
 }
 
+/* Ocultar "Scan an Image File" y otros elementos de texto */
+#qr-reader a {
+  display: none !important;
+}
+
+#qr-reader a:link,
+#qr-reader a:visited,
+#qr-reader a:hover,
+#qr-reader a:active {
+  display: none !important;
+}
+
+/* Ocultar cualquier elemento que contenga "Scan" */
+#qr-reader > div > a,
+#qr-reader__bottom,
+#qr-reader__bottom_section {
+  display: none !important;
+}
+
 /* Media queries para responsive */
 @media (max-width: 480px) {
   .qr-scanner-modal {
