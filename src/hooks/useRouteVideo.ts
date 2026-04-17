@@ -11,21 +11,30 @@ export function useRouteVideo() {
 
   // Cargar ubicaciones al montar y detectar origin/destination desde URL
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlOrigin = params.get('origin');
-    const urlDestination = params.get('destination');
+  const params = new URLSearchParams(window.location.search);
+  const urlOrigin = params.get('origin');
+  const urlDestination = params.get('destination');
 
+  // Solo cargar parámetros de URL si vienen de un QR (navegación externa)
+  // Si es F5, el performance.navigation.type será 1 (reload)
+  const isReload = performance.navigation.type === 1;
+
+  if (!isReload) {
     if (urlOrigin) setOriginId(urlOrigin);
     if (urlDestination) setDestinationId(urlDestination);
+  } else {
+    // Es F5, limpiar la URL también
+    window.history.replaceState(null, '', window.location.pathname);
+  }
 
-    async function loadLocations() {
-      setIsLoading(true);
-      const data = await getLocations();
-      setLocations(data);
-      setIsLoading(false);
-    }
-    loadLocations();
-  }, []);
+  async function loadLocations() {
+    setIsLoading(true);
+    const data = await getLocations();
+    setLocations(data);
+    setIsLoading(false);
+  }
+  loadLocations();
+}, []);
 
   // Mantener URL en sincronía con la ubicación de origen
   useEffect(() => {
